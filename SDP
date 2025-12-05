@@ -1,4 +1,4 @@
-//including headers
+//including headers Nick Nahrwold  and Addison Painting
 #include "FEHUtility.h"
 #include "FEHLCD.h"
 #include "FEHImages.h"
@@ -7,10 +7,10 @@
 #include <stdio.h>
 #include "FEHSound.h"
 
-//Creating a class so all the data can be shared
+//Creating a class so all the data can be shared Addison Painting
 class Stats {
 public:
-//Defining all the functions as public
+//Defining all the functions as public Addison Painting
 void MainMenu(); 
 void Touch(int a, int b);
 void Game(int d);
@@ -20,79 +20,82 @@ void writeleaderboard(int *ew,int *mw,int *hw);
 void easyleaderboard(int e,int *ew);
 void medleaderboard (int m, int *mw);
 void hardleaderboard (int h, int *hw);
+
 private:
-//Declaring variables as private
+//Declaring variables as private Addison Painting
 int medw,hardw,easyw;
 int easywinner=0;
 int medwinner=0;
 int hardwinner=0;
 int time=0;
 int difficulty;
-//Declaring a variable of class Stats
+
+//Declaring a variable of class Stats Addison Painting
+
 }funccall;
 
 
-
+//Struct for robot variables Nick Nahrwold
 struct Robot {
     int xpos;
     int ypos;
 
-    //bounding boxes for collisions
+    //bounding boxes for collisions Nick Nahrwold
     int topy;
     int boty;
     int leftx;
     int rightx;
 
-    //rest bool condition
+    //rest bool condition Nick Nahrwold
     bool reset;
 };
 
 
 void Stats::Game(int d)
 {
-    //Clearing screen for game
+    //Clearing screen for game Addison painting
     LCD.Clear();
     LCD.Update();
-    //Initializing start time
+    //Initializing start time Addison Painting
     int starttime=TimeNow();
     //Finding seconds passed
     time=TimeNow()-starttime;
-    //Displaying seconds passed
+    //Displaying seconds passed Addison Painting
    LCD.SetFontColor(WHITE);
    LCD.WriteAt(time,15,215); 
 
        int gameover = false;
     
-    //declare the robots
+    //declare the robots Nick Nahrwold
     struct Robot robot1;
     struct Robot robot2;
     struct Robot robot3;
 
 
-    //brutus stuff
+    //variables Nick Nahrwold
 
-            //brutus position
+            //brutus position Nick Nahrwold
             int positionx = 152;
             int positiony = 185;
             
-            //brutus position variables
+            //brutus position variables Nick Nahrwold
             int right = 0;
             int rightcount = 0;
 
-            //brutus position varibles
+            //brutus position varibles Nick Nahrwold
             int left = 0;
             int leftcount = 0;
 
-            //brutus bounds
+            //brutus bounds Nick Nahrwold
             int brutus_topy = positiony - 15;
             int brutus_boty = positiony + 15;
             int brutus_left = positionx - 10;
             int brutus_right = positionx + 10;
 
-            //collisons
+            //collisons Nick Nahrwold
             bool brutuscollision;
 
-    //initial robot positions
+    //initial robot positions Nick Nahrwold
     robot1.xpos = 111;
     robot1.ypos = -200;
     robot1.leftx = robot1.xpos - 20;
@@ -114,12 +117,11 @@ void Stats::Game(int d)
     robot3.topy = robot3.ypos - 15;
     robot3.boty = robot3.ypos + 15;
 
-    //stuff
-    //road ys
+    //road y position variables Nick Nahrwold
     int road1y = 0;
     int road2y = -240;
 
-    //highstreety 
+    //highstreety Nick Nahrwold
     int high1y = -2726;
     int high2y = -5692;
 
@@ -129,51 +131,48 @@ void Stats::Game(int d)
 
 
     
-    //difficulty
+    //difficulty **changes the speed of the game** Nick Nahrwold
    difficulty=d;
 
-    //path random variable
+    //path random variable radmizor vairable for robot Nick Nahrwold
     int pathrand;
 
-    //collision variable
+    //collision variable Nick Nahrwold
     bool collision = true; 
 
-        // Declares an image for a unicorn
-
-    FEHImage road1; // Screenshot from Google Earth
+    FEHImage road1; // Screenshot from Google Earth Nick Nahrwold
     // Open the image
     road1.Open("road.png");
 
-    FEHImage road2; // Screenshot from Google Earth
+    FEHImage road2; // Screenshot from Google Earth Nick Nahrwold
     // Open the image
     road2.Open("road.png");
 
-    FEHImage brutus; // AI generated image from chat gpt
+    FEHImage brutus; // AI generated image from chat gpt Nick Nahrwold
     // Open the image
     brutus.Open("brutus.png");  
-    // Draw a unicorn in the top left corner
-    FEHImage robot; //AI generated image from chat gpt
+   
+    FEHImage robot; //AI generated image from chat gpt Nick Nahrwold
     // Open the image
     robot.Open("finalrobot.png");
-    // Draw a unicorn in the top left corner
-
     
-    FEHImage highstreet1; // Screenshot from Google Earth
+    FEHImage highstreet1; // Screenshot from Google Earth Nick Nahrwold
     // Open the image
     highstreet1.Open("LONGWAYhighstreet.png");
 
-    FEHImage highstreet2; // Screenshot from Google Earth
+    FEHImage highstreet2; // Screenshot from Google Earth Nick Nahrwold
     // Open the image
     highstreet2.Open("LONGWAYhighstreet.png");
 
-    FEHImage ahighstreet1; // Screenshot from Google Earth
+    FEHImage ahighstreet1; // Screenshot from Google Earth Nick Nahrwold
     // Open the image
     ahighstreet1.Open("aLONGWAYhighstreet.png");
 
-    FEHImage ahighstreet2; // Screenshot from Google Earth
+    FEHImage ahighstreet2; // Screenshot from Google Earth Nick Nahrwold
     // Open the image
     ahighstreet2.Open("aLONGWAYhighstreet.png");
 
+    //draw initial position of the hightstreet moving out banners  Nick Nahrwold
     highstreet1.Draw(-9, -2726);
     highstreet1.Draw(-9, -5692);
 
@@ -186,10 +185,10 @@ void Stats::Game(int d)
     road2.Draw(110,-240);
     brutus.Draw(positionx, 185);
     LCD.Update();
-    //Sleep(1000);
+    
 
-     // Create and play a background music file
-    FEHSound backgroundMusic("Minion March.wav");
+    // Create and play a background music file Nick Nahrwold
+    FEHSound backgroundMusic("Minion March.wav"); //This is from the game "Minion Rush"
     backgroundMusic.setVolume(0.5);
     backgroundMusic.play();
     
@@ -197,22 +196,9 @@ void Stats::Game(int d)
 
     while(gameover == false)
     {
-    
 
-    
-    
-    /*
-    brutus.Draw(152, 185);
-    brutus.Draw(116, 185);
-    brutus.Draw(188, 185);
-    
-    
-    robot.Draw(183, 100);
-    robot.Draw(111, 100);
-    robot.Draw(149, 100);
-    */
 
-// move right position function
+// move right position function for brutus to slowly move him  Nick Nahrwold
     if(positionx < 188)
         {
         if(right != 1)
@@ -241,7 +227,7 @@ void Stats::Game(int d)
 
         Sleep(8);
 
-//move left function
+//move left function for brutus to slowly move him  Nick Nahrwold
 if(positionx > 116)
         {
         if(left != 1)
@@ -267,7 +253,7 @@ if(positionx > 116)
                 } 
         }
 
-    // draw the road
+    // increment road and high street position and draw them on top of previous images Nick Nahrwold
     high1y += difficulty;
     high2y += difficulty;
 
@@ -287,6 +273,7 @@ if(positionx > 116)
     ahighstreet2.Draw(229, ahigh2y);
 
 
+    //statements to move the backround back to the top of the screen once it fully exits the screen Nick Nahrwold
     if(road1y >= 240){
         road1y = -240;
     }
@@ -308,32 +295,32 @@ if(positionx > 116)
         ahigh2y = -2966;
     }
     
-//robot 1
+//robot 1 spawn in protocol Nick Nahrwold
 
-    //set the robot back to above the 
-    if(robot1.ypos > 260) //if the robot goes off the screen
+    //set the robot back to above the screen if the robot goes off the screen Nick Nahrwold
+    if(robot1.ypos > 260) 
     {
              
                     do{
-                    robot1.ypos = 20 * ((abs(Random.RandInt()) % 10) + 1) - 240;  //random number (20 - 200)   moved up above scree
+                    robot1.ypos = 20 * ((abs(Random.RandInt()) % 10) + 1) - 240;  //random number (20 - 200) set this for random placement of robots Nick Nahrwold
                     pathrand = (Random.RandInt() % 3) + 1;   
                     switch(pathrand){
 
                     case 1:
-                        robot1.xpos = 111;//one of 3 xpos 
+                        robot1.xpos = 111;//one of 3 x positions Nick Nahrwold
                     break;
 
                     case 2:
-                        robot1.xpos = 149;//one of 3 xpos 
+                        robot1.xpos = 149;//one of 3 x positions Nick Nahrwold
                     break;
 
                     case 3:
-                        robot1.xpos = 183;//one of 3 xpos 
+                        robot1.xpos = 183;//one of 3 x postions  Nick Nahrwold
                     break;
 
 
                     }   
-                    //check to make sure the robot is not interfering with another robot
+                    //calculate bounding boxes and ensure that the robot is not colliding with any other robot for spawn in Nick Nahrwold
                     robot1.leftx = robot1.xpos - 20;
                     robot1.rightx = robot1.xpos + 20;
                     robot1.topy = robot1.ypos - 15;
@@ -341,10 +328,10 @@ if(positionx > 116)
 
                         collision = false;
 
-                        // robot1 vs robot2
+                        // robot1 vs robot2 collision check Nick Nahrwold
                         if (!(robot1.rightx < robot2.leftx  || robot1.leftx  > robot2.rightx || robot1.boty   < robot2.topy   || robot1.topy   > robot2.boty)){collision = true;}
 
-                        // robot1 vs robot3
+                        // robot1 vs robot3 collision check  Nick Nahrwold
                         if (!(robot1.rightx < robot3.leftx  || robot1.leftx  > robot3.rightx || robot1.boty   < robot3.topy   || robot1.topy   > robot3.boty)){collision = true;}
 
 
@@ -354,31 +341,31 @@ if(positionx > 116)
         
     }
 
-//robot 2
+//robot 2 spawn in protocol Nick Nahrwold
  
-    if(robot2.ypos > 260) //if the robot goes off the screen
+    if(robot2.ypos > 260) //set the robot back to above the screen if the robot goes off the screen Nick Nahrwold
     {
     
                     do{
-                    robot2.ypos = 20 * ((abs(Random.RandInt()) % 10) + 1) - 240;  //random number (20 - 200)   moved up above scree
+                    robot2.ypos = 20 * ((abs(Random.RandInt()) % 10) + 1) - 240;  //random number (20 - 200) set this for random placement of robots Nick Nahrwold
                     pathrand = (Random.RandInt() % 3) + 1;   
                     switch(pathrand)
                         {
 
                         case 1:
-                            robot2.xpos = 111;//one of 3 xpos 
+                            robot2.xpos = 111;//one of 3 x postions  Nick Nahrwold
                         break;
 
                         case 2:
-                            robot2.xpos = 149;//one of 3 xpos 
+                            robot2.xpos = 149;//one of 3 x postions  Nick Nahrwold
                         break;
 
                         case 3:
-                            robot2.xpos = 183;//one of 3 xpos 
+                            robot2.xpos = 183;//one of 3 x postions  Nick Nahrwold 
                         break;
 
                         }   
-                    //check to make sure the robot is not interfering with another robot
+                    //calculate bounding boxes and ensure that the robot is not colliding with any other robot for spawn in Nick Nahrwold
                     robot2.leftx = robot2.xpos - 20;
                     robot2.rightx = robot2.xpos + 20;
                     robot2.topy = robot2.ypos - 15;
@@ -386,10 +373,10 @@ if(positionx > 116)
 
                         collision = false;
 
-                        // robot2 vs robot1
+                        // robot1 vs robot2 collision check Nick Nahrwold
                         if (!(robot2.rightx < robot1.leftx  || robot2.leftx  > robot1.rightx || robot2.boty   < robot1.topy   || robot2.topy   > robot1.boty)){collision = true;}
 
-                        // robot2 vs robot3
+                        // robot1 vs robot3 collision check  Nick Nahrwold
                         if (!(robot2.rightx < robot3.leftx  || robot2.leftx  > robot3.rightx || robot2.boty   < robot3.topy   || robot2.topy   > robot3.boty)){collision = true;}
 
  
@@ -399,10 +386,10 @@ if(positionx > 116)
         
     }
 
-//robot 3
+//robot 3 spawn in protocol Nick Nahrwold
 
-    //set the robot back to above the 
-    if(robot3.ypos > 260) //if the robot goes off the screen
+    
+    if(robot3.ypos > 260) //set the robot back to above the screen if the robot goes off the screen Nick Nahrwold
     {
                     
                     
@@ -414,20 +401,20 @@ if(positionx > 116)
                     switch(pathrand){
 
                     case 1:
-                        robot3.xpos = 111;//one of 3 xpos 
+                        robot3.xpos = 111;//one of 3 x postions  Nick Nahrwold
                     break;
 
                     case 2:
-                        robot3.xpos = 149;//one of 3 xpos 
+                        robot3.xpos = 149;//one of 3 x postions  Nick Nahrwold 
                     break;
 
                     case 3:
-                        robot3.xpos = 183;//one of 3 xpos 
+                        robot3.xpos = 183;//one of 3 x postions  Nick Nahrwold
                     break;
 
 
                     }   
-                    //check to make sure the robot is not interfering with another robot
+                    //calculate bounding boxes and ensure that the robot is not colliding with any other robot for spawn in Nick Nahrwold
                     robot3.leftx = robot3.xpos - 20;
                     robot3.rightx = robot3.xpos + 20;
                     robot3.topy = robot3.ypos - 15;
@@ -435,20 +422,20 @@ if(positionx > 116)
 
                         collision = false;
 
-                        // robot3 vs robot2
+                        // robot1 vs robot2 collision check Nick Nahrwold
                         if (!(robot3.rightx < robot2.leftx  || robot3.leftx  > robot2.rightx || robot3.boty   < robot2.topy   || robot3.topy   > robot2.boty)){collision = true;}
 
-                        // robot3 vs robot1
+                        // robot1 vs robot3 collision check  Nick Nahrwold
                         if (!(robot3.rightx < robot1.leftx  || robot3.leftx  > robot1.rightx || robot3.boty   < robot1.topy   || robot3.topy   > robot1.boty)){collision = true;}
 
 
                     
-        } while(collision == true);
+        } while(collision == true); // loop until collsion is not true (robot found a non colliding spot to spawn in) Nick Nahrwold
         collision = true;
         
     }
 
-    //check for brutus collisions
+    //check for brutus collisions by calculating robot bounding boxes and brutus bounding boxes Nick Nahrwold
 
     robot1.leftx = robot1.xpos - 20;
     robot1.rightx = robot1.xpos + 20;
@@ -472,19 +459,18 @@ if(positionx > 116)
 
     brutuscollision = false;
 
+                        //Check for collisions of brutus and robots Nick Nahrwold
                         if (!(brutus_right < robot1.leftx  || brutus_right  > robot1.rightx || brutus_boty   < robot1.topy   || brutus_topy   > robot1.boty)){brutuscollision = true;}
 
-                        // robot3 vs robot2
                         if (!(brutus_right < robot2.leftx  || brutus_right  > robot2.rightx || brutus_boty   < robot2.topy   || brutus_topy   > robot2.boty)){brutuscollision = true;}
 
-                        // robot3 vs robot1
                         if (!(brutus_right < robot3.leftx  || brutus_right  > robot3.rightx || brutus_boty   < robot3.topy   || brutus_topy   > robot3.boty)){brutuscollision = true;}
         
 
     
 
 
-    ///advance robots
+    ///advance robots with the difficulty increment Nick Nahrwold
     
     robot.Draw(robot1.xpos, robot1.ypos);
     robot1.ypos += difficulty;
@@ -495,12 +481,20 @@ if(positionx > 116)
     robot.Draw(robot3.xpos, robot3.ypos);
     robot3.ypos += difficulty;
 
+    //draw brutus Nick Nahrwold
     brutus.Draw(positionx, 185);
+
+    //updating timer
+    LCD.SetFontColor(BLACK);
+    LCD.FillRectangle(10, 210, 25, 20);
+    time=TimeNow()-starttime;
+   LCD.SetFontColor(WHITE);
+   LCD.WriteAt(time,15,215);
 
     if(brutuscollision == true){
          gameover = true;
          backgroundMusic.pause();
-      //Updating the high score based on difficulty level chosen
+      //Updating the high score based on difficulty level chosen Addison Painting
        if(difficulty==6)
       {
         
@@ -516,49 +510,27 @@ if(positionx > 116)
         
         funccall.hardleaderboard(time,&hardw);
       }
-      //Displaying game over screen
+      //Displaying game over screen Addison Painting
       funccall.GameOver(&time);
     }
 
-
-    //Robot
-    //  +15 x  ____ + 20 y
-    //LCD.FillRectangle(120, 40, 30, 40);
-
-    //LCD.SetFontColor(RED);
-
-
-
-    //Brutus
-    //  +10 x  ____ + 15 y
-    //LCD.FillRectangle(125, 100, 20, 30);
-    
-    
-    
-    
-    
-    //updating timer
-    LCD.SetFontColor(BLACK);
-    LCD.FillRectangle(10, 210, 25, 20);
-    time=TimeNow()-starttime;
-   LCD.SetFontColor(WHITE);
-   LCD.WriteAt(time,15,215); 
+     
     
     LCD.Update();
     Sleep(10);
 }
 }
-//defining GameOver function
+//defining GameOver function Addison Painting
 void Stats::GameOver(int *t)
 {
-    FEHSound vineboom("vine-boom.wav");
-    vineboom.setVolume(5);
+    FEHSound vineboom("vine-boom.wav"); //from "vineboom sound effect" Nick Nahrwold
+    vineboom.setVolume(1);
     vineboom.play();
     LCD.Clear();
     LCD.SetFontColor(WHITE);
     LCD.SetFontScale(2);
     LCD.WriteAt("GAME OVER",50,25);
-    //displaying players time that was passed to the function
+    //displaying players time that was passed to the function Addison painting
     LCD.SetFontScale(1);
     LCD.WriteAt("Player's Time:",70,80);
     LCD.WriteAt(*t,70,100);
@@ -567,7 +539,7 @@ void Stats::GameOver(int *t)
      LCD.FillRectangle(155,160,75,30); 
      LCD.SetFontColor(BLACK);
      LCD.SetFontScale(0.5);
-     //giving player option to play again or return to main menu
+     //giving player option to play again or return to main menu Addison Painting
      LCD.WriteAt("Play Again",80,165);
     LCD.WriteAt("Main Menu",160,165);
     LCD.Update();
@@ -592,14 +564,20 @@ void Stats::GameOver(int *t)
     }
 }  
 
-//defining MainMenu function
+//defining MainMenu function Addison Painting
 void Stats::MainMenu() 
 { 
-    FEHImage highstreet; // Screenshot from Google Earth 
+  
+    FEHImage highstreet; // Screenshot from Google Earth  Nick Nahrwold
     // Open the image 
     highstreet.Open("highstreetpic.png"); 
     LCD.Clear(); 
-    //Diplaying 4 buttons with text for players options
+
+    FEHSound carefree("Carefree.wav"); //from "kevin macleod song: carefree" Nick Nahrwold
+    carefree.setVolume(.5);
+    carefree.play();
+
+    //Diplaying 4 buttons with text for players options Addison Painting
     LCD.SetFontColor(LIGHTGOLDENRODYELLOW); 
     highstreet.Draw(0, 0); 
     LCD.FillRectangle(79, 47, 159, 35); 
@@ -615,37 +593,42 @@ void Stats::MainMenu()
     LCD.SetFontScale(0.5); 
     LCD.WriteAt("Stats/Leaderboard",105,170); 
     LCD.Update(); 
-    //detecting touch
+    //detecting touch Addison Painting
     float x,y,x2,y2; 
-       /* Wait until the user touches the screen */ 
+    /* Wait until the user touches the screen */ 
     while(!LCD.Touch(&x,&y)) {}; 
-        /* Wait until the touch releases */ 
+
+    carefree.pause();
+
+    /* Wait until the touch releases */ 
     while(LCD.Touch(&x2,&y2)) {};  
+
     Touch(x,y); 
 } 
-//defining the Touch function
+//defining the Touch function Addison Painting
 void Stats::Touch(int x, int y) 
 { 
-    //navigating player based off which button they click
+    //navigating player based off which button they click Addison Painting
  if(x>79&&x<238&&y>47&&y<82) 
     { 
-        //calling difficulty function
+        //calling difficulty function Addison Painting
         Difficulty();
     }
     else if(x>79&&x<238&&y>85&&y<120) 
     { 
-        //Displaying instructions
+        //Displaying instructions Addison Painting
     LCD.Clear(); 
     LCD.SetFontColor(WHITE); 
     LCD.WriteAt("Instructions:",50,50); 
-    LCD.WriteAt("To play, click to move your character to the 3 ",20,70); 
-    LCD.WriteAt("different paths. Ensure that you character does",20,90); 
-    LCD.WriteAt("not collide with any obstacles. If you do collide,",20,110); 
-    LCD.WriteAt("you lose. The goal is to last as long as you can.",20,130); 
+    LCD.WriteAt("To play, click to move your character to the 3 ",15,70); 
+    LCD.WriteAt("different paths. Ensure that you character does",15,90); 
+    LCD.WriteAt("not collide with any obstacles. If you do collide,",15,110); 
+    LCD.WriteAt("you lose. The goal is to last as long as you can.",15,130); 
+    LCD.WriteAt("Use key 'A' to move left and key 'D' to move right.",15,150); 
     LCD.WriteAt("",50,130); 
-    LCD.WriteAt("Good Luck! ",50,150); 
+    LCD.WriteAt("Good Luck! ",50,170); 
     LCD.Update(); 
-    //Creating return to main menu button
+    //Creating return to main menu button Addison Painting
     LCD.FillRectangle( 10, 10, 150, 25 ); 
     LCD.SetFontScale(0.5); 
     LCD.SetFontColor(BLACK); 
@@ -653,15 +636,20 @@ void Stats::Touch(int x, int y)
     } 
     else if(x>79&&x<238&&y>123&&y<158) 
   { 
-    //displaying credits
+    //displaying credits Addison Painting
    LCD.Clear(); 
     LCD.SetFontColor(WHITE); 
     LCD.WriteAt("Credits:",50,50); 
-    LCD.WriteAt("Made by Addison Painting and Nick Nahrwold",50,70); 
-    LCD.WriteAt("SDP Project for FEH 1281H",50,90); 
-    LCD.WriteAt("Prof: Dr. H Class 10:20am 12/1/2025",50,110); 
+    LCD.WriteAt("Made by Addison Painting and Nick Nahrwold",20,70); 
+    LCD.WriteAt("SDP Project for FEH 1281H",20,90); 
+    LCD.WriteAt("Prof: Dr. H Class 10:20am 12/1/2025",20,110); 
+    LCD.WriteAt("Street Images from GOOGLE EARTH",20,130); 
+    LCD.WriteAt("Robots and Brutus generated from CHAT GPT",20,150); 
+    LCD.WriteAt("Music from stock audio library and Minion Rush",20,170); 
+    LCD.WriteAt("Carefree from 'kevin macleod'",20,190); 
+
     LCD.Update(); 
-    //Creating return to main menu button
+    //Creating return to main menu button Addison painting
     LCD.FillRectangle( 10, 10, 150, 25 ); 
     LCD.SetFontScale(0.5); 
     LCD.SetFontColor(BLACK); 
@@ -670,31 +658,31 @@ void Stats::Touch(int x, int y)
     else if(x>79&&x<238&&y>161&&y<196) 
     { 
     LCD.Clear(); 
-    //calling function to display leaderboard
+    //calling function to display leaderboard with updated stats Addison Painting
     funccall.writeleaderboard(&easyw,&medw,&hardw);
-    //Creating return to main menu button
+    //Creating return to main menu button Addison Painting
     LCD.FillRectangle( 10, 10, 150, 25 ); 
     LCD.SetFontScale(0.5); 
     LCD.SetFontColor(BLACK); 
     LCD.WriteAt("Return to Main Menu",15,15); 
     } 
     LCD.Update(); 
-    //detecting touch
+    //detecting touch Addison Painting
     int a,b,a2,b2; 
     while(!LCD.Touch(&a,&b)) {}; 
     while(LCD.Touch(&a2,&b2)) {}; 
-    //determining if player clicked return button
+    //determining if player clicked return button Addison Painting
     if (a>10&&a<150&&b>10&&b<25) 
     { 
-        //returning to main menu
+        //returning to main menu Addison Painting
         funccall.MainMenu(); 
     } 
 } 
-//defining difficulty function
+//defining difficulty function Addison Painting
 void Stats::Difficulty()
 {
     LCD.Clear();
-    //creating buttons for user to choose difficulty
+    //creating buttons for user to choose difficulty Addison Painting
     LCD.SetFontColor(RED);
     LCD.FillRectangle(79, 47, 159, 35); 
     LCD.FillRectangle(79, 85,  159, 35 ); 
@@ -706,11 +694,11 @@ void Stats::Difficulty()
     LCD.WriteAt("Medium Mode",125,94); 
     LCD.WriteAt("Hard Mode",130,132); 
     LCD.Update();
-    //detecting touch
+    //detecting touch Addison Painting
      float x,y,xx,yy;     
     while(!LCD.Touch(&x,&y)) {}; 
     while(LCD.Touch(&xx,&yy)) {}; 
-    //based on which button is clicked, a different difficulty value is passed to the game function and game function is called  
+    //based on which button is clicked, a different difficulty value is passed to the game function and game function is called Addison Painting
     if(x>79&&x<238&&y>47&&y<82)
     {
         Game(6);
@@ -724,10 +712,10 @@ void Stats::Difficulty()
         Game(10);
     } 
 }
-//defining writeleaderboard function
+//defining writeleaderboard function Addison Painting
 void Stats::writeleaderboard(int *ew,int *mw,int *hw)
 {
-    //displaying the highest time that was returned from each levels leaderboard function
+    //displaying the highest time that was returned from each levels leaderboard function Addison Painting
     LCD.SetFontColor(WHITE); 
     LCD.WriteAt("Displayed items:",50,50); 
     LCD.WriteAt("Longest Hard Difficulty Time :",50,70); 
@@ -738,47 +726,46 @@ void Stats::writeleaderboard(int *ew,int *mw,int *hw)
     LCD.WriteAt(*ew ,230,110); 
     LCD.Update(); 
 }
-//defining the easyleaderboard function
+//defining the easyleaderboard function Addison Painting
 void Stats::easyleaderboard(int e,int *ew)
 {
-    //testing if the users time is greater than the current highest
+    //testing if the users time is greater than the current highest Addison Painting
     if (e>easywinner)
     {
-        //replacing highest time
+        //replacing highest time Addison Painting
         easywinner=e;
     }
-    //storing high score in pointer user input
+    //storing high score in pointer user input Addison Painting
     *ew=easywinner;
 }
-//defining the medleaderboard function
+//defining the medleaderboard function Addison Painting
 void Stats::medleaderboard (int m, int *mw)
 {
-    //testing if the users time is greater than the current highest
+    //testing if the users time is greater than the current highest Addison Painting
     if (m>medwinner)
     {
-        //replacing highest time
+        //replacing highest time Addison Painting
         medwinner=m;
     }
-    //storing high score in pointer user input
+    //storing high score in pointer user input Addison Painting
     *mw=medwinner;
 }
-//defining the hardleaderboard function
+//defining the hardleaderboard function Addison Painting
 void Stats::hardleaderboard (int h,int *hw)
 {
-    //testing if the users time is greater than the current highest
+    //testing if the users time is greater than the current highest Addison Painting
     if (h>hardwinner)
     {
-         //replacing highest time
+         //replacing highest time Addison Painting
         hardwinner=h;
     }
-    //storing high score in pointer user input
+    //storing high score in pointer user input Addison Painting
     *hw=hardwinner;
 }
 
-//main function
-int main()
+//main function Addison Painting
 {
-//creating a never ending loop that calls the MainMenu function that starts the game
+//creating a never ending loop that calls the MainMenu function that starts the game Addison Painting
    while(1)
    {
     funccall.MainMenu();

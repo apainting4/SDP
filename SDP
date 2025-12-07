@@ -764,6 +764,7 @@ void Stats::hardleaderboard (int h,int *hw)
 }
 
 //main function Addison Painting
+int main()
 {
 //creating a never ending loop that calls the MainMenu function that starts the game Addison Painting
    while(1)
